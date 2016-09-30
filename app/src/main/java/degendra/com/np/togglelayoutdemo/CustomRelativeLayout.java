@@ -26,6 +26,15 @@ public class CustomRelativeLayout extends RelativeLayout
     }
 
     @Override
+    public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, widthMeasureSpec);
+        int width = MeasureSpec.getSize(widthMeasureSpec);
+        int height = MeasureSpec.getSize(heightMeasureSpec);
+        int size = width > height ? height : width;
+        setMeasuredDimension(size, size); // make it square
+    }
+
+    @Override
     public void onClick(View v) {
         Log.d(TAG, "CustomRelativeLayout. onClicked");
         ((RadioGroup)v.getParent()).check(v.getId());
